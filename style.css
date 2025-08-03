@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background-color: white;
+    background-color: #45E6FF;
     text-align: center;
     padding: 2rem 1rem;
     border-bottom: 1px solid var(--border-color);
@@ -131,6 +131,7 @@ button:hover {
 .dla-kobiet {
     display: none; /* Domyślnie ukryte */
 }
+
 
 
 

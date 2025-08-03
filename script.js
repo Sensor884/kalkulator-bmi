@@ -1,36 +1,133 @@
-function obliczBMI() {
-    // 1. Pobierz dane z inputów
-    const waga = parseFloat(document.getElementById('waga').value);
-    const wzrostCm = parseFloat(document.getElementById('wzrost').value);
-    const wynikDiv = document.getElementById('wynikBMI');
+/* --- Podstawowe Style --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --light-gray: #f4f7f6;
+    --dark-gray: #333;
+    --text-color: #555;
+    --border-color: #ddd;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
 
-    // 2. Sprawdź, czy dane są poprawne
-    if (isNaN(waga) || isNaN(wzrostCm) || waga <= 0 || wzrostCm <= 0) {
-        wynikDiv.innerHTML = "Proszę podać prawidłowe dane.";
-        wynikDiv.style.color = "red";
-        return;
-    }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+}
 
-    // 3. Wykonaj obliczenia
-    const wzrostM = wzrostCm / 100; // Zamień cm na metry
-    const bmi = waga / (wzrostM * wzrostM);
-    const wynik = bmi.toFixed(2); // Zaokrąglij do 2 miejsc po przecinku
+header {
+    background-color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
 
-    // 4. Zinterpretuj wynik i wyświetl go
-    let interpretacja = '';
-    if (wynik < 18.5) {
-        interpretacja = ' (Niedowaga)';
-        wynikDiv.style.color = "orange";
-    } else if (wynik >= 18.5 && wynik < 24.9) {
-        interpretacja = ' (Waga prawidłowa)';
-        wynikDiv.style.color = "green";
-    } else if (wynik >= 25 && wynik < 29.9) {
-        interpretacja = ' (Nadwaga)';
-        wynikDiv.style.color = "orange";
-    } else {
-        interpretacja = ' (Otyłość)';
-        wynikDiv.style.color = "red";
-    }
+header h1 {
+    color: var(--dark-gray);
+    margin: 0;
+}
 
-    wynikDiv.innerHTML = `Twoje BMI wynosi: ${wynik}${interpretacja}`;
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* --- Siatka Kalkulatorów --- */
+.calculators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calculator-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator-container h2 {
+    color: var(--dark-gray);
+    margin-top: 0;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* --- Formularze --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+label {
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+button {
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* --- Wyniki --- */
+.wynik {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: var(--light-gray);
+    border-left: 5px solid;
+    display: none; /* Ukryty domyślnie */
+}
+
+.wynik-success { border-color: var(--success-color); }
+.wynik-warning { border-color: var(--warning-color); }
+.wynik-danger { border-color: var(--danger-color); }
+.wynik-info { border-color: var(--primary-color); }
+
+/* --- Dodatkowe Style --- */
+.dla-kobiet {
+    display: none; /* Domyślnie ukryte */
 }

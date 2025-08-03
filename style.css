@@ -13,7 +13,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: var(--text-color);
     margin: 0;
     line-height: 1.6;
@@ -131,5 +131,6 @@ button:hover {
 .dla-kobiet {
     display: none; /* Domyślnie ukryte */
 }
+
 
 

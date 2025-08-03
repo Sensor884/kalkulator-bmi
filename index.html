@@ -3,24 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulatory Zdrowia</title>
+    <title>Kalkulatory Zdrowia i Fitness | bmi-oblicz.com.pl</title>
+    <meta name="description" content="Kompleksowy zbiór darmowych kalkulatorów zdrowia. Oblicz swoje BMI, zapotrzebowanie kaloryczne (CPM), BMR, WHR, poziom tkanki tłuszczowej i idealną wagę.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Kalkulator BMI</h1>
-        <form id="bmiForm">
-            <label for="waga">Waga (kg):</label>
-            <input type="number" id="waga" placeholder="np. 70" required>
+    <header>
+        <h1>Centrum Kalkulatorów Zdrowia</h1>
+        <p>Twoje narzędzia do monitorowania zdrowia i kondycji fizycznej</p>
+    </header>
 
-            <label for="wzrost">Wzrost (cm):</label>
-            <input type="number" id="wzrost" placeholder="np. 175" required>
+    <main class="calculators-grid">
 
-            <button type="button" onclick="obliczBMI()">Oblicz BMI</button>
-        </form>
-        <div id="wynikBMI" class="wynik"></div>
-    </div>
+        <div class="calculator-container">
+            <h2>Kalkulator BMI</h2>
+            <p>Oblicz wskaźnik masy ciała, aby ocenić, czy Twoja waga jest w normie.</p>
+            <form id="bmiForm">
+                <label for="bmi-waga">Waga (kg):</label>
+                <input type="number" id="bmi-waga" placeholder="np. 70" required>
+                <label for="bmi-wzrost">Wzrost (cm):</label>
+                <input type="number" id="bmi-wzrost" placeholder="np. 175" required>
+                <label for="bmi-wiek">Wiek:</label>
+                <input type="number" id="bmi-wiek" placeholder="np. 30" required>
+                <label for="bmi-plec">Płeć:</label>
+                <select id="bmi-plec">
+                    <option value="mezczyzna">Mężczyzna</option>
+                    <option value="kobieta">Kobieta</option>
+                </select>
+                <button type="button" onclick="obliczBMI()">Oblicz BMI</button>
+            </form>
+            <div id="wynikBMI" class="wynik"></div>
+        </div>
+        
+        <div class="calculator-container">
+            <h2>Kalkulator PPM (BMR)</h2>
+            <p>Oblicz podstawową przemianę materii – kalorie spalane w spoczynku.</p>
+            <form>
+                <label for="ppm-waga">Waga (kg):</label>
+                <input type="number" id="ppm-waga" placeholder="np. 70" required>
+                <label for="ppm-wzrost">Wzrost (cm):</label>
+                <input type="number" id="ppm-wzrost" placeholder="np. 175" required>
+                <label for="ppm-wiek">Wiek:</label>
+                <input type="number" id="ppm-wiek" placeholder="np. 30" required>
+                <label for="ppm-plec">Płeć:</label>
+                <select id="ppm-plec">
+                    <option value="mezczyzna">Mężczyzna</option>
+                    <option value="kobieta">Kobieta</option>
+                </select>
+                <button type="button" onclick="obliczPPM()">Oblicz PPM</button>
+            </form>
+            <div id="wynikPPM" class="wynik"></div>
+        </div>
+
+        <div class="calculator-container">
+            <h2>Kalkulator CPM (Zapotrzebowanie Kaloryczne)</h2>
+            <p>Oblicz całkowite dzienne zapotrzebowanie na kalorie, uwzględniając aktywność.</p>
+            <form>
+                <label for="cpm-waga">Waga (kg):</label>
+                <input type="number" id="cpm-waga" placeholder="np. 70" required>
+                <label for="cpm-wzrost">Wzrost (cm):</label>
+                <input type="number" id="cpm-wzrost" placeholder="np. 175" required>
+                <label for="cpm-wiek">Wiek:</label>
+                <input type="number" id="cpm-wiek" placeholder="np. 30" required>
+                <label for="cpm-plec">Płeć:</label>
+                <select id="cpm-plec">
+                    <option value="mezczyzna">Mężczyzna</option>
+                    <option value="kobieta">Kobieta</option>
+                </select>
+                <label for="cpm-aktywnosc">Poziom aktywności:</label>
+                <select id="cpm-aktywnosc">
+                    <option value="1.2">Brak aktywności, praca siedząca</option>
+                    <option value="1.375">Niska aktywność (1-2 treningi/tyg.)</option>
+                    <option value="1.55">Średnia aktywność (3-4 treningi/tyg.)</option>
+                    <option value="1.725">Wysoka aktywność (5 treningów/tyg.)</option>
+                    <option value="1.9">Bardzo wysoka aktywność (praca fiz., codzienne treningi)</option>
+                </select>
+                <button type="button" onclick="obliczCPM()">Oblicz CPM</button>
+            </form>
+            <div id="wynikCPM" class="wynik"></div>
+        </div>
+
+        <div class="calculator-container">
+            <h2>Kalkulator WHR (Talia-Biodra)</h2>
+            <p>Oceń rozmieszczenie tkanki tłuszczowej i ryzyko zdrowotne.</p>
+            <form>
+                <label for="whr-talia">Obwód talii (cm):</label>
+                <input type="number" id="whr-talia" placeholder="np. 80" required>
+                <label for="whr-biodra">Obwód bioder (cm):</label>
+                <input type="number" id="whr-biodra" placeholder="np. 95" required>
+                <label for="whr-wiek">Wiek:</label>
+                <input type="number" id="whr-wiek" placeholder="np. 30" required>
+                <label for="whr-plec">Płeć:</label>
+                <select id="whr-plec">
+                    <option value="mezczyzna">Mężczyzna</option>
+                    <option value="kobieta">Kobieta</option>
+                </select>
+                <button type="button" onclick="obliczWHR()">Oblicz WHR</button>
+            </form>
+            <div id="wynikWHR" class="wynik"></div>
+        </div>
+        
+        <div class="calculator-container">
+            <h2>Kalkulator % Tkanki Tłuszczowej</h2>
+            <p>Oszacuj procentowy udział tkanki tłuszczowej w masie ciała (metoda U.S. Navy).</p>
+            <form>
+                <label for="bf-wzrost">Wzrost (cm):</label>
+                <input type="number" id="bf-wzrost" placeholder="np. 175" required>
+                <label for="bf-talia">Obwód talii (cm):</label>
+                <input type="number" id="bf-talia" placeholder="np. 80" required>
+                <label for="bf-szyja">Obwód szyi (cm):</label>
+                <input type="number" id="bf-szyja" placeholder="np. 40" required>
+                <label for="bf-biodra" class="dla-kobiet">Obwód bioder (cm) (tylko kobiety):</label>
+                <input type="number" id="bf-biodra" placeholder="np. 95" class="dla-kobiet">
+                 <label for="bf-wiek">Wiek:</label>
+                <input type="number" id="bf-wiek" placeholder="np. 30" required>
+                <label for="bf-plec">Płeć:</label>
+                <select id="bf-plec" onchange="pokazPoleBioder(this.value)">
+                    <option value="mezczyzna">Mężczyzna</option>
+                    <option value="kobieta">Kobieta</option>
+                </select>
+                <button type="button" onclick="obliczTluszcz()">Oblicz % Tłuszczu</button>
+            </form>
+            <div id="wynikTluszcz" class="wynik"></div>
+        </div>
+        
+        <div class="calculator-container">
+            <h2>Kalkulator Idealnej Wagi</h2>
+            <p>Oblicz orientacyjną idealną masę ciała na podstawie wzoru Robinsona.</p>
+            <form>
+                <label for="iw-wzrost">Wzrost (cm):</label>
+                <input type="number" id="iw-wzrost" placeholder="np. 175" required>
+                <label for="iw-wiek">Wiek:</label>
+                <input type="number" id="iw-wiek" placeholder="np. 30" required>
+                <label for="iw-plec">Płeć:</label>
+                <select id="iw-plec">
+                    <option value="mezczyzna">Mężczyzna</option>
+                    <option value="kobieta">Kobieta</option>
+                </select>
+                <button type="button" onclick="obliczIdealnaWage()">Oblicz Wagę</button>
+            </form>
+            <div id="wynikIdealnaWaga" class="wynik"></div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 bmi-oblicz.com.pl - Wszelkie prawa zastrzeżone.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

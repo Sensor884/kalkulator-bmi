@@ -19,9 +19,6 @@ body {
     line-height: 1.6;    
 
   }
-}
-</script>
-}
 
 header {
     background-color: white;
@@ -151,6 +148,7 @@ function initLandbot() {
     s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
     var x = document.getElementsByTagName('script')[0];
     x.parentNode.insertBefore(s, x);
+
 
 
 

@@ -18,7 +18,7 @@ body {
     margin: 0;
     line-height: 1.6;
 
-    <script>
+    
 window.addEventListener('mouseover', initLandbot, { once: true });
 window.addEventListener('touchstart', initLandbot, { once: true });
 var myLandbot;
@@ -152,6 +152,7 @@ button:hover {
 .dla-kobiet {
     display: none; /* Domyślnie ukryte */
 }
+
 
 
 
